@@ -1,0 +1,32 @@
+HELP.md
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+/src/test/
+/LOG_PATH_IS_UNDEFINED/
+/src/main/resources/config/application-local.properties
+/out/
+.gradle
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+/src/main/resources/banner.txt

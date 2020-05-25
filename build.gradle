@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'com.shengsiyuan'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile ("mysql:mysql-connector-java:5.1.24",
+            "com.ibm.db2.jcc:db2jcc:db2jcc4"
+    )
+}
