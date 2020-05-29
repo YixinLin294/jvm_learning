@@ -16,3 +16,7 @@ dependencies {
             "com.ibm.db2.jcc:db2jcc:db2jcc4"
     )
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
