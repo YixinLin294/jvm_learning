@@ -1,0 +1,68 @@
+﻿class 文件常量池
+字符串常量池
+运行时常量池
+
+
+运行时常量池在 方法区 
+字符串常量池在堆中, 是 引用
+class文件常量池在加载类时会进入运行时常量池
+
+https://blog.csdn.net/qq_26222859/article/details/73135660
+
+https://www.cnblogs.com/feizhai/p/10196955.html
+
+
+字面量就是我们所说的常量概念，如文本字符串、被声明为final的常量值等（int、 long， double。。。。）
+
+jdk11 
+
+标记-清除
+标记-复制
+标记-整理
+
+https://www.iteye.com/blog/rednaxelafx-1044951
+
+新生代 （均要stw）
+Serial 单线程
+ParNew 多线程，并行
+Parallel Scanvenge 多线程，并行，注重吞吐量
+
+老年代
+CMS 注重缩短停顿时间 并发低停顿收集器
+Serial Old 单线程 
+Parallel Old 多线程
+
+整堆收集器
+G1
+
+CMS 卡表（记忆集）
+初始标记
+并发标记 写屏障，写后屏障 更新卡表 基于增量更新
+重新标记
+并发清除
+
+G1 记忆集
+初始标记 借用Minor GC的时候同步完成
+并发标记 写屏障，写前屏障 原始快照
+最终标记
+筛选回收
+
+只有CMS有old gc（其他垃圾回收器都是full gc？）
+
+
+Shenandoah
+初始标记
+并发标记
+最终标记
+并发清理
+并发回收
+初始引用更新
+并发引用更新
+最终引用更新
+并发清理
+
+ZGC
+并发标记
+并发预备重分配
+并发重分配
+并发重映射

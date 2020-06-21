@@ -4,7 +4,7 @@
 
 
 运行时常量池在 方法区 
-字符串常量池在堆中, 是 引用
+字符串常量池在堆中, 是引用
 class文件常量池在加载类时会进入运行时常量池
 
 https://blog.csdn.net/qq_26222859/article/details/73135660
@@ -47,7 +47,7 @@ G1 记忆集
 最终标记
 筛选回收
 
-只有CMS有old gc（其他垃圾回收器都是full gc？）
+只有CMS有old gc（其他垃圾回收器的老年代垃圾回收都是full gc？）
 
 
 Shenandoah
@@ -61,8 +61,63 @@ Shenandoah
 最终引用更新
 并发清理
 
-ZGC
+ZGC 染色指针
 并发标记
 并发预备重分配
 并发重分配
 并发重映射
+
+
+
+虚拟机参数
+-XX:+UseSerialGC
+-verbose:gc
+-Xms20M
+-Xmx20M
+-Xmn10M
+-XX:+PrintGCDetails
+-XX:SurvivorRatio=3
+-XX:+PrintTenuringDistribution
+-XX:MaxTenuringThreshold=15
+-XX:TargetSurvivorRatio=50
+
+
+对象优先在Eden分配
+	-Xms20M
+	-Xmx20M
+	-Xmn10M
+	-XX:SurvivorRatio8
+大对象直接进入老年代
+	-XX:PretenureSizeThreshold
+长期存活的对象将进入老年代
+	-XX:MaxTenuringThreshold=1
+动态对象年龄判定
+	如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到-XX:MaxTenuringThreshold中要求的年龄
+空间分配担保
+	-XX:HandlePromotionFailure
+	
+	
+	
+jps JVM Process Status Tool
+jstat JVM Statistics Monitoring Tool
+	jstat -gc 40504 250 20
+jinfo Configuration Info for Java
+	jinfo -flag CMSInitiatingOccupancyFraction 40504
+jmap	Memory Map for Java
+	jmap -dump:format=b,file=test.bin 40504
+jhat JVM Heap Analysis Tool
+	jhat test.bin
+jstack Stack Trace for Java
+	jstack -l 40504	
+	java.lang.Thread类新增了一个getAllStackTraces()方法、
+
+	
+JHSDB 	Java HotSpot Debugger
+	jhsdb hsdb --pid 2100
+	https://www.zhihu.com/question/38496907
+	类对象是存在java堆中
+jconsole
+jmc 	Java Mission Control
+jvisualvm	 Java VisualVM
+	BTrace
+
